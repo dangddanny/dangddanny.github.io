@@ -1,5 +1,5 @@
 /*
-	Massively by HTML5 UP
+	Phantom by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -11,111 +11,88 @@
 		large:	'(max-width: 1280px)',
 		medium:	'(max-width: 980px)',
 		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)',
-		xxsmall: '(max-width: 360px)'
+		xsmall:	'(max-width: 480px)'
 	});
-
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
-	$.fn._parallax = function(intensity) {
-
-		var	$window = $(window),
-			$this = $(this);
-
-		if (this.length == 0 || intensity === 0)
-			return $this;
-
-		if (this.length > 1) {
-
-			for (var i=0; i < this.length; i++)
-				$(this[i])._parallax(intensity);
-
-			return $this;
-
-		}
-
-		if (!intensity)
-			intensity = 0.25;
-
-		$this.each(function() {
-
-			var $t = $(this),
-				$bg = $('<div class="bg"></div>').appendTo($t),
-				on, off;
-
-			on = function() {
-
-				$bg
-					.removeClass('fixed')
-					.css('transform', 'matrix(1,0,0,1,0,0)');
-
-				$window
-					.on('scroll._parallax', function() {
-
-						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
-
-						$bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
-
-					});
-
-			};
-
-			off = function() {
-
-				$bg
-					.addClass('fixed')
-					.css('transform', 'none');
-
-				$window
-					.off('scroll._parallax');
-
-			};
-
-			// Disable parallax on ..
-				if (skel.vars.browser == 'ie'		// IE
-				||	skel.vars.browser == 'edge'		// Edge
-				||	window.devicePixelRatio > 1		// Retina/HiDPI (= poor performance)
-				||	skel.vars.mobile)				// Mobile devices
-					off();
-
-			// Enable everywhere else.
-				else {
-
-					skel.on('!large -large', on);
-					skel.on('+large', off);
-
-				}
-
-		});
-
-		$window
-			.off('load._parallax resize._parallax')
-			.on('load._parallax resize._parallax', function() {
-				$window.trigger('scroll');
-			});
-
-		return $(this);
-
-	};
 
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body'),
-			$wrapper = $('#wrapper'),
-			$header = $('#header'),
-			$nav = $('#nav'),
-			$main = $('#main'),
-			$navPanelToggle, $navPanel, $navPanelInner;
+			$body = $('body');
 
 		// Disable animations/transitions until the page has loaded.
+			$body.addClass('is-loading');
+
 			$window.on('load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
 			});
+
+		// Touch?
+			if (skel.vars.mobile)
+				$body.addClass('is-touch');
+
+		// Forms.
+			var $form = $('form');
+
+			// Auto-resizing textareas.
+				$form.find('textarea').each(function() {
+
+					var $this = $(this),
+						$wrapper = $('<div class="textarea-wrapper"></div>'),
+						$submits = $this.find('input[type="submit"]');
+
+					$this
+						.wrap($wrapper)
+						.attr('rows', 1)
+						.css('overflow', 'hidden')
+						.css('resize', 'none')
+						.on('keydown', function(event) {
+
+							if (event.keyCode == 13
+							&&	event.ctrlKey) {
+
+								event.preventDefault();
+								event.stopPropagation();
+
+								$(this).blur();
+
+							}
+
+						})
+						.on('blur focus', function() {
+							$this.val($.trim($this.val()));
+						})
+						.on('input blur focus --init', function() {
+
+							$wrapper
+								.css('height', $this.height());
+
+							$this
+								.css('height', 'auto')
+								.css('height', $this.prop('scrollHeight') + 'px');
+
+						})
+						.on('keyup', function(event) {
+
+							if (event.keyCode == 9)
+								$this
+									.select();
+
+						})
+						.triggerHandler('--init');
+
+					// Fix.
+						if (skel.vars.browser == 'ie'
+						||	skel.vars.mobile)
+							$this
+								.css('max-height', '10em')
+								.css('overflow-y', 'auto');
+
+				});
+
+			// Fix: Placeholder polyfill.
+				$form.placeholder();
 
 		// Prioritize "important" elements on medium.
 			skel.on('+medium -medium', function() {
@@ -125,143 +102,98 @@
 				);
 			});
 
-		// Scrolly.
-			$('.scrolly').scrolly();
+		// Menu.
+			var $menu = $('#menu');
 
-		// Background.
-			$wrapper._parallax(0.925);
+			$menu.wrapInner('<div class="inner"></div>');
 
-		// Nav Panel.
+			$menu._locked = false;
 
-			// Toggle.
-				$navPanelToggle = $(
-					'<a href="#navPanel" id="navPanelToggle">Menu</a>'
-				)
-					.appendTo($wrapper);
+			$menu._lock = function() {
 
-				// Change toggle styling once we've scrolled past the header.
-					$header.scrollex({
-						bottom: '5vh',
-						enter: function() {
-							$navPanelToggle.removeClass('alt');
-						},
-						leave: function() {
-							$navPanelToggle.addClass('alt');
-						}
-					});
+				if ($menu._locked)
+					return false;
 
-			// Panel.
-				$navPanel = $(
-					'<div id="navPanel">' +
-						'<nav>' +
-						'</nav>' +
-						'<a href="#navPanel" class="close"></a>' +
-					'</div>'
-				)
-					.appendTo($body)
-					.panel({
-						delay: 500,
-						hideOnClick: true,
-						hideOnSwipe: true,
-						resetScroll: true,
-						resetForms: true,
-						side: 'right',
-						target: $body,
-						visibleClass: 'is-navPanel-visible'
-					});
+				$menu._locked = true;
 
-				// Get inner.
-					$navPanelInner = $navPanel.children('nav');
+				window.setTimeout(function() {
+					$menu._locked = false;
+				}, 350);
 
-				// Move nav content on breakpoint change.
-					var $navContent = $nav.children();
+				return true;
 
-					skel.on('!medium -medium', function() {
+			};
 
-						// NavPanel -> Nav.
-							$navContent.appendTo($nav);
+			$menu._show = function() {
 
-						// Flip icon classes.
-							$nav.find('.icons, .icon')
-								.removeClass('alt');
+				if ($menu._lock())
+					$body.addClass('is-menu-visible');
 
-					});
+			};
 
-					skel.on('+medium', function() {
+			$menu._hide = function() {
 
-						// Nav -> NavPanel.
-						$navContent.appendTo($navPanelInner);
+				if ($menu._lock())
+					$body.removeClass('is-menu-visible');
 
-						// Flip icon classes.
-							$navPanelInner.find('.icons, .icon')
-								.addClass('alt');
+			};
 
-					});
+			$menu._toggle = function() {
 
-				// Hack: Disable transitions on WP.
-					if (skel.vars.os == 'wp'
-					&&	skel.vars.osVersion < 10)
-						$navPanel
-							.css('transition', 'none');
+				if ($menu._lock())
+					$body.toggleClass('is-menu-visible');
 
-		// Intro.
-			var $intro = $('#intro');
+			};
 
-			if ($intro.length > 0) {
+			$menu
+				.appendTo($body)
+				.on('click', function(event) {
+					event.stopPropagation();
+				})
+				.on('click', 'a', function(event) {
 
-				// Hack: Fix flex min-height on IE.
-					if (skel.vars.browser == 'ie') {
-						$window.on('resize.ie-intro-fix', function() {
+					var href = $(this).attr('href');
 
-							var h = $intro.height();
+					event.preventDefault();
+					event.stopPropagation();
 
-							if (h > $window.height())
-								$intro.css('height', 'auto');
-							else
-								$intro.css('height', h);
+					// Hide.
+						$menu._hide();
 
-						}).trigger('resize.ie-intro-fix');
-					}
+					// Redirect.
+						if (href == '#menu')
+							return;
 
-				// Hide intro on scroll (> small).
-					skel.on('!small -small', function() {
+						window.setTimeout(function() {
+							window.location.href = href;
+						}, 350);
 
-						$main.unscrollex();
+				})
+				.append('<a class="close" href="#menu">Close</a>');
 
-						$main.scrollex({
-							mode: 'bottom',
-							top: '25vh',
-							bottom: '-50vh',
-							enter: function() {
-								$intro.addClass('hidden');
-							},
-							leave: function() {
-								$intro.removeClass('hidden');
-							}
-						});
+			$body
+				.on('click', 'a[href="#menu"]', function(event) {
 
-					});
+					event.stopPropagation();
+					event.preventDefault();
 
-				// Hide intro on scroll (<= small).
-					skel.on('+small', function() {
+					// Toggle.
+						$menu._toggle();
 
-						$main.unscrollex();
+				})
+				.on('click', function(event) {
 
-						$main.scrollex({
-							mode: 'middle',
-							top: '15vh',
-							bottom: '-15vh',
-							enter: function() {
-								$intro.addClass('hidden');
-							},
-							leave: function() {
-								$intro.removeClass('hidden');
-							}
-						});
+					// Hide.
+						$menu._hide();
+
+				})
+				.on('keydown', function(event) {
+
+					// Hide on escape.
+						if (event.keyCode == 27)
+							$menu._hide();
 
 				});
-
-			}
 
 	});
 
