@@ -3165,7 +3165,7 @@
 			font-size: 1em;
 			height: inherit;
 			line-height: inherit;
-			padding: .6em 0em;
+			padding: .6em 1em;
 		}
 
 			#header .logo strong {
@@ -3178,7 +3178,7 @@
 				display: inline-block;
 				line-height: 1.65em;
 				margin-right: 0.325em;
-				padding: 0 0.125em 0 0em;
+				padding: 0 0.125em 0 0.375em;
 			}
 
 			#header .logo:hover strong {
