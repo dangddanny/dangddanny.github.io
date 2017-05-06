@@ -1686,7 +1686,7 @@
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #9bf1ff !important;
+			color: #edcbc4 !important;
 		}
 
 		a:active {
@@ -1983,8 +1983,8 @@
 		input[type="url"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #9bf1ff;
-			box-shadow: 0 0 0 2px #9bf1ff;
+			border-color: #edcbc4;
+			box-shadow: 0 0 0 2px #edcbc4;
 		}
 
 	.select-wrapper {
@@ -2088,14 +2088,14 @@
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
 			background: #ffffff;
-			border-color: #9bf1ff;
+			border-color: #edcbc4;
 			content: '\f00c';
 			color: #242943;
 		}
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			box-shadow: 0 0 0 2px #9bf1ff;
+			box-shadow: 0 0 0 2px #edcbc4;
 		}
 
 	input[type="radio"] + label:before {
@@ -2412,7 +2412,7 @@
 					}
 
 						ul.pagination li > .page.active:hover {
-							background-color: #9bf1ff;
+							background-color: #edcbc4;
 							color: #242943 !important;
 						}
 
@@ -2565,8 +2565,8 @@
 		button:active,
 		.button:hover,
 		.button:active {
-			!box-shadow: inset 0 0 0 2px #9bf1ff;
-			!color: #9bf1ff;
+			!box-shadow: inset 0 0 0 2px #edcbc4;
+			!color: #edcbc4;
 		}
 
 		input[type="submit"]:active,
@@ -2711,7 +2711,7 @@
 			button.special:active,
 			.button.special:hover,
 			.button.special:active {
-				background-color: #9bf1ff;
+				background-color: #edcbc4;
 				color: #242943 !important;
 			}
 
@@ -2821,11 +2821,12 @@
 				display: block;
 				height: 100%;
 				left: 0;
-				opacity: 0.85;
+				opacity: 0.75;
 				position: absolute;
 				width: 100%;
 				z-index: 2;
 			}
+
 
 			.tiles article:after {
 				background-color: rgba(36, 41, 67, 0.25);
@@ -2860,27 +2861,27 @@
 			}
 
 			.tiles article:nth-child(6n - 5):before {
-				background-color: #6fc3df;
+				background-color: #2f2f2f;
 			}
 
 			.tiles article:nth-child(6n - 4):before {
-				background-color: #8d82c4;
+				background-color: #2f2f2f;
 			}
 
 			.tiles article:nth-child(6n - 3):before {
-				background-color: #ec8d81;
+				background-color: #2f2f2f;
 			}
 
 			.tiles article:nth-child(6n - 2):before {
-				background-color: #e7b788;
+				background-color: #2f2f2f;
 			}
 
 			.tiles article:nth-child(6n - 1):before {
-				background-color: #8ea9e8;
+				background-color: #2f2f2f;
 			}
 
 			.tiles article:nth-child(6n):before {
-				background-color: #87c5a4;
+				background-color: #2f2f2f;
 			}
 
 		@media screen and (max-width: 1280px) {
@@ -3182,7 +3183,7 @@
 			}
 
 			#header .logo:hover strong {
-				background-color: #9bf1ff;
+				background-color: #edcbc4;
 			}
 
 			#header .logo:active strong {
