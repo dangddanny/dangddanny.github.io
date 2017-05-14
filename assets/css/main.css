@@ -3166,11 +3166,11 @@
 
 		#header .logo {
 			!border: 0;
-			!display: inline-block;
+			display: inline-block;
 			!font-size: .8em;
 			!height: inherit;
 			!line-height: inherit;
-			padding: 0em 0 200em 0em;
+			padding: 0em 0em 0em 0em;
 		}
 
 			#header .logo strong {
@@ -3348,6 +3348,8 @@
 
 		@media screen and (max-width: 736px) {
 
+
+
 			#header {
 				height: 2.75em;
 				line-height: 2.75em;
@@ -3355,6 +3357,7 @@
 
 				#header .logo {
 					padding: 0 1em;
+
 				}
 
 				#header nav a {
@@ -4021,7 +4024,16 @@
 		}
 
 		.divlogo {
+
 			overflow: hidden;
+			max-width: 70px;
+
+		}
+
+		.divlogo img {
+
+    width: 100%;
+    height: auto;
 		}
 
 		.divlogo img:last-child, img:nth-child(2){
@@ -4042,4 +4054,16 @@
 
 		.divlogo:hover:active img:last-child {
 			display: inline-block;
+		}
+
+		@media screen and (max-width: 480px) {
+
+			.divlogo {
+
+				overflow: hidden;
+				max-width: 60px;
+
+			}
+
+
 		}
