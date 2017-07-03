@@ -1832,24 +1832,28 @@
 		width: -webkit-max-content;
 		width: -ms-max-content;
 		width: max-content;
-		margin-bottom: 2em;
+		!margin-bottom: 2em;
+		!text-align: center;
+
 	}
 
-		header.major > :first-child {
-			margin-bottom: 0;
-			width: calc(100% + 0.5em);
-		}
+
+
+		!header.major > :first-child {
+			!margin-bottom: 0;
+			!width: max-content;
+		!}
 
 
 
-			header.major > :first-child:after {
-				content: '';
-				background-color: #ffffff;
-				display: block;
-				height: 2px;
-				margin: 0.325em 0 0.5em 0;
-				width: 100%;
-			}
+			!header.major > :first-child:after {
+				!content: '';
+				!background-color: #ffffff;
+				!display: block;
+				!height: 2px;
+				!margin: 0.325em 0 0.5em 0;
+				!width: max-content;
+			!}
 
 
 
@@ -2795,10 +2799,26 @@
 			.tiles article header {
 				position: relative;
 				z-index: 3;
+				!opacity: 0;
+				!-moz-transition: opacity 0.5s ease;
+				!-webkit-transition: opacity 0.5s ease;
+				!-ms-transition: opacity 0.5s ease;
+				!transition: opacity 0.5s ease;
+			}
+
+			.tiles article p {
+				position: relative;
+				z-index: 3;
+				opacity: 0;
+				-moz-transition: opacity 0.5s ease;
+				-webkit-transition: opacity 0.5s ease;
+				-ms-transition: opacity 0.5s ease;
+				transition: opacity 0.5s ease;
 			}
 
 			.tiles article h3 {
 				font-size: 1.75em;
+				text-align: center;
 			}
 
 				.tiles article h3 a:hover {
@@ -2825,7 +2845,7 @@
 				display: block;
 				height: 100%;
 				left: 0;
-				opacity: 0.75;
+				opacity: 0.25;
 				position: absolute;
 				width: 100%;
 				z-index: 2;
@@ -2845,7 +2865,11 @@
 			}
 
 			.tiles article:hover:before {
-				opacity: 0;
+				opacity: .85;
+			}
+
+			.tiles article:hover p {
+				opacity: 1;
 			}
 
 			.tiles article.is-transitioning {
