@@ -1824,7 +1824,7 @@
 /* Section/Article */
 
 	section.special, article.special {
-		text-align: center;
+		!text-align: center;
 	}
 
 	header.major {
@@ -1865,9 +1865,9 @@
 			text-transform: uppercase;
 		}
 
-		body.is-ie header.major > :first-child:after {
-			max-width: 9em;
-		}
+		!body.is-ie header.major > :first-child:after {
+			!max-width: 9em;
+		!}
 
 		body.is-ie header.major > h1:after {
 			max-width: 100% !important;
@@ -2789,7 +2789,7 @@
 			min-height: 23em;
 			overflow: hidden;
 			position: relative;
-			!width: 25%;
+			width: 25%;
 		}
 
 			.tiles article .image {
@@ -2915,7 +2915,7 @@
 		@media screen and (max-width: 1280px) {
 
 			.tiles article {
-				padding: 4em 3em 2em 3em ;
+				!padding: 4em 3em 2em 3em ;
 				height: 30vh;
 				max-height: 30em;
 				min-height: 20em;
@@ -2934,14 +2934,15 @@
 		@media screen and (max-width: 736px) {
 
 			.tiles article {
-				padding: 3em 1.5em 1em 1.5em ;
-				height: 16em;
+				!padding: 3em 1.5em 1em 1.5em ;
+				!height: 16em;
 				max-height: none;
 				min-height: 0;
 			}
 
 				.tiles article h3 {
 					font-size: 1.5em;
+					!text-align: center !important;
 				}
 
 		}
@@ -2956,6 +2957,8 @@
 					height: 20em;
 					width: 100% !important;
 				}
+
+
 
 		}
 
