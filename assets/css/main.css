@@ -2916,7 +2916,7 @@
 
 			.tiles article {
 				!padding: 4em 3em 2em 3em ;
-				height: 30vh;
+				height: 40vh;
 				max-height: 30em;
 				min-height: 20em;
 			}
@@ -2926,6 +2926,7 @@
 		@media screen and (max-width: 980px) {
 
 			.tiles article {
+				height: 40vh;
 				width: 50% !important;
 			}
 
@@ -2935,8 +2936,8 @@
 
 			.tiles article {
 				!padding: 3em 1.5em 1em 1.5em ;
-				!height: 16em;
-				max-height: none;
+				height: 16em;
+				max-height: 60;
 				min-height: 0;
 			}
 
