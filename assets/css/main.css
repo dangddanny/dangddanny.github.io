@@ -4048,8 +4048,9 @@
 		!background-color: red;
 		width:40%;
 		vertical-align: top;
-		text-align: left;
-		padding-left: 4em;
+		!text-align: right;
+		padding-left: 7em;
+		line-height: 1.85;
 		}
 
 		.divlogo {
