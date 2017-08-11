@@ -4048,7 +4048,8 @@
 		!background-color: red;
 		width:40%;
 		vertical-align: top;
-		text-align: right;
+		text-align: left;
+		padding-left: 4em;
 		}
 
 		.divlogo {
