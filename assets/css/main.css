@@ -26,6 +26,7 @@
 		line-height: 1;
 	}
 
+
 	ol, ul {
 		list-style: none;
 	}
@@ -2274,13 +2275,14 @@
 			list-style: none;
 			padding: 0;
 			position: relative;
+			!width: 100%;
 		}
 
 			ul.icons-grid li {
 				display: block;
 				float: left;
-				padding: 3em 0;
-				width: 50%;
+				padding: 1em 0;
+				width: 25%;
 			}
 
 				ul.icons-grid li h3 {
@@ -2288,24 +2290,22 @@
 				}
 
 				ul.icons-grid li:nth-child(2n + 1) {
-					box-shadow: inset -1px 0 0 0 #dddddd, 1px 0 0 0 #dddddd;
+					!verticalLine
+					!box-shadow: inset -1px 0 0 0 #dddddd, 1px 0 0 0 #dddddd;
 				}
 
 				ul.icons-grid li:nth-child(2n + 3):before {
+					!horizontalLine
 					background: #dddddd;
 					content: '';
 					display: block;
 					height: 2px;
 					margin-top: -3em;
 					position: absolute;
-					width: 100%;
+					!width: 100%;
 				}
 
-			ul.icons-grid:after {
-				clear: both;
-				content: '';
-				display: block;
-			}
+
 
 		ul.actions {
 			cursor: default;
@@ -2633,7 +2633,7 @@
 		}
 
 			.main .container:before {
-				min-height: calc( 100vh - 13em );
+				!min-height: calc( 100vh - 13em );
 				content: '';
 				display: inline-block;
 				vertical-align: middle;
