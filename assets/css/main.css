@@ -2177,6 +2177,24 @@
 		margin: 0 auto;
 }
 
+.portrait {
+	-webkit-box-shadow: 10px 10px 33px -6px rgba(173,173,173,1);
+	-moz-box-shadow: 10px 10px 33px -6px rgba(173,173,173,1);
+	box-shadow: 10px 10px 33px -6px rgba(173,173,173,1);
+
+		width: 50%;
+	  padding-bottom : 50%;
+		background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+		margin: 0 auto;
+}
+
+.danny{
+	background-image: url("../../images/danny.jpg");
+}
+
+
 .arealigned{
 	background-image: url("../../images/arealigned.jpg");
 
